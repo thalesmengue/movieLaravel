@@ -29,6 +29,18 @@
                     <button class="px-6 py-2 mt-4 text-white bg-rose-500 rounded-lg hover:opacity-80">register
                     </button>
                 </div>
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                <div role="alert" class="mt-2">
+                    <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 text-center">
+                        something bad happened
+                    </div>
+                    <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                        {{ $error }}
+                    </div>
+                </div>
+                    @endforeach
+                @endif
             </div>
         </form>
     </div>

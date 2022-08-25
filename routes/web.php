@@ -19,3 +19,8 @@ Route::post("/", [MovieController::class, "store"])->name("store");
 Route::get("/edit/{movie}", [MovieController::class, "edit"])->name("movie.edit");
 Route::post("/edit/{movie}", [MovieController::class, "update"])->name("movie.update");
 Route::delete("/edit/{movie}", [MovieController::class, "destroy"])->name("movie.destroy");
+
+Route::fallback(function () {
+    echo 'The route you tried to access isn' . "'" . 't available, <a href="' . route('index') . '">
+click here</a> to return to home page';
+});
