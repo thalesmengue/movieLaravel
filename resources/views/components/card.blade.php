@@ -8,7 +8,7 @@
                 <p class="text-gray-300"> {{$movie->name}} </p>
             </div>
             <div class="flex gap-2 text-xl">
-                <h2>Score:</h2>
+                <h2>Rating:</h2>
                 <p class="text-gray-300"> {{$movie->rating}} </p>
             </div>
 

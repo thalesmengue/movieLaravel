@@ -12,35 +12,52 @@
                             <input type="text" placeholder="name" name="name"
                                    class="w-full placeholder-slate-400 px-4 py-2 mt-2 border rounded-md
                                    focus:outline-none focus:ring-1 focus:ring-rose-600">
+                            @if($errors->has("name"))
+                                <div class="text-center text-base text-red-600 m-2">
+                                    {{ $errors->first("name") }}
+                                </div>
+                            @endif
                 </div>
                 <div class="mt-4">
                     <label class="block text-slate-400" for="email">rating<label>
                             <input type="number" placeholder="rating" name="rating" max="10" min="1"
                                    class="w-full placeholder-slate-400 px-4 py-2 mt-2 border rounded-md
                                    focus:outline-none focus:ring-1 focus:ring-rose-600">
+                            @if($errors->has("rating"))
+                                <div class="text-center text-base text-red-600 m-2">
+                                    {{ $errors->first("rating") }}
+                                </div>
+                            @endif
                 </div>
                 <div class="mt-4">
                     <label class="block text-slate-400">when watched<label>
                             <input type="date" placeholder="when i watched" name="date_watched"
                                    class="w-full placeholder-slate-400 px-4 py-2 mt-2 border rounded-md
                                    focus:outline-none focus:ring-1 focus:ring-rose-600">
+                            @if($errors->has("date_watched"))
+                                <div class="text-center text-base text-red-600 m-2">
+                                    {{ $errors->first("date_watched") }}
+                                </div>
+                            @endif
                 </div>
                 <div class="flex justify-center items-center">
-                    <button class="px-6 py-2 mt-4 text-white bg-rose-500 rounded-lg hover:opacity-80">register
+                    <button
+                        class="px-6 py-2 mt-4 text-white bg-rose-500 rounded-lg hover:opacity-80">
+                        register
                     </button>
                 </div>
-                @if($errors->any())
-                    @foreach($errors->all() as $error)
-                <div role="alert" class="mt-2">
-                    <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 text-center">
-                        something bad happened
-                    </div>
-                    <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-                        {{ $error }}
-                    </div>
-                </div>
-                    @endforeach
-                @endif
+                {{--                @if($errors->any())--}}
+                {{--                    @foreach($errors->all() as $error)--}}
+                {{--                        <div role="alert" class="mt-2">--}}
+                {{--                            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 text-center">--}}
+                {{--                                something bad happened--}}
+                {{--                            </div>--}}
+                {{--                            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">--}}
+                {{--                                {{ $error }}--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    @endforeach--}}
+                {{--                @endif--}}
             </div>
         </form>
     </div>
