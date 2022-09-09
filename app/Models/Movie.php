@@ -13,6 +13,7 @@ class Movie extends Model
     protected $fillable = [
         "name",
         "rating",
-        "date_watched"
+        "date_watched",
+        "user_id"
     ];
 }

@@ -9,7 +9,6 @@
 </head>
 
 <body class="bg-purple-500">
-@include('components.navbar')
 @yield('content')
 </body>
 </html>
