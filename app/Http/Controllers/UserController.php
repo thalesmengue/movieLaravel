@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         return view("profile", compact("user"));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
-        $user = User::query()->find($id);
         $user->update($request->all());
 
         return redirect()->route("index");

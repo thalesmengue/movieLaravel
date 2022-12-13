@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ForgotPasswordRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,9 @@ class ForgotPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => ['required', 'email', 'exists:users,email']
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            "email.required" => "You need to put your account e-mail here",
-            "email.email" => "You need to put a valid e-mail here",
-            "email.exists" => "This e-mail doesn't exists in your database"
+            'name' => ['required', 'min:3', 'max:30'],
+            'last_name' => ['required', 'min:3', 'max:50'],
+            'email' => ['required', 'email', 'min:3', 'max:80', "unique:users,email," . auth()->id()]
         ];
     }
 }

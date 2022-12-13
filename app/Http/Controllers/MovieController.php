@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MovieRequest;
 use App\Models\Movie;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MovieController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $search = $request["search"] ?? "";
         if ($search != "") {
-            $movies = Movie::where("name", "LIKE", "%$search%")->get();
+            $movies = Movie::query()->where("name", "LIKE", "%$search%")->get();
         } else {
-            $movies = Movie::where("user_id", auth()->user()->id)->get();
+            $movies = Movie::query()->where("user_id", auth()->user()->id)->get();
         }
 
         return view("index", compact("movies"));
@@ -24,15 +26,14 @@ class MovieController extends Controller
     public function search(Request $request)
     {
         $movies = Movie::query();
-
     }
 
-    public function register()
+    public function register(): View
     {
         return view("register_movie");
     }
 
-    public function store(MovieRequest $request)
+    public function store(MovieRequest $request): RedirectResponse
     {
         Movie::query()->create($request->merge([
             "user_id" => auth()->user()->id
@@ -41,12 +42,12 @@ class MovieController extends Controller
         return redirect("/");
     }
 
-    public function edit(Movie $movie)
+    public function edit(Movie $movie): View
     {
         return view("edit", compact("movie"));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         $movie = Movie::query()->find($id);
         $movie->update($request->all());
@@ -54,7 +55,7 @@ class MovieController extends Controller
         return redirect("/");
     }
 
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         Movie::destroy($id);
 

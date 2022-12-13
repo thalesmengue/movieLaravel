@@ -11,7 +11,7 @@ class RegisterRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,19 +21,19 @@ class RegisterRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return
             [
-                "name" => "required|min:3|max:30",
-                "last_name" => "required|min:3|max:50",
-                "email" => "required|email|min:3|max:80|unique:users",
-                "password" => "required|min:6",
-                "password_confirmation" => "required|same:password"
+                "name" => ['required', 'min:3', 'max:30'],
+                "last_name" => ['required', 'min:3', 'max:50'],
+                "email" => ['required', 'email', 'min:3', 'max:80', 'unique:users'],
+                "password" => ['required', 'min:6'],
+                "password_confirmation" => ['required', 'same:password']
             ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             "name.required" => "The name field must be filled",

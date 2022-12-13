@@ -10,6 +10,10 @@ class Movie extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $dates = [
+        "date_watched"
+    ];
+
     protected $fillable = [
         "name",
         "rating",

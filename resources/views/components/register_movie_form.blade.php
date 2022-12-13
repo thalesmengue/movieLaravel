@@ -6,7 +6,7 @@
             </div>
         </div>
         <h3 class="text-2xl text-center text-rose-600 font-mono">register movie</h3>
-        <form action="{{ route("store") }}" method="post">
+        <form action="{{ route("movies.store") }}" method="post">
             @csrf
             <div class="mt-4">
                 <div>

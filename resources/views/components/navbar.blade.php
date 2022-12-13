@@ -23,7 +23,7 @@
                         class="flex flex-wrap w-full px-12 py-2 mt-2 text-sm font-mono space-x-3 items-center bg-gray-300
                         rounded-lg hover:text-gray-900 focus:text-gray-900 hover:opacity-70
                         focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                    <img src="{{ asset(auth()->user()->profile_image) }}" class="w-8 rounded-full">
+                    <img src="{{ asset(auth()->user()->getUserImage()) }}" class="w-8 rounded-full">
                     <span class=""> {{ auth()->user()->name }} </span>
                     <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
                          class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
@@ -40,18 +40,20 @@
                      x-transition:leave-end="transform opacity-0 scale-95"
                      class="absolute right-0 w-full mt-1 origin-top-right rounded-md shadow-lg md:w-48">
                     <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
-                        <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                        <button onclick="window.location='{{route('users.edit', Auth::user())}}'" class="block px-4 py-2 mt-2
+                        text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900
+                        hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        > Profile
+                        </button>
+                        <form action="{{route('logout.user')}}">
+                            @csrf
+                            <button class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
                         dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600
                         dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
                         hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none
-                        focus:shadow-outline"
-                           href=" {{ route("update.user", auth()->user()->id) }} "> Profile </a>
-                        <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
-                        dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600
-                        dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
-                        hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none
-                        focus:shadow-outline"
-                           href=" {{ route("logout.user") }}"> Logout </a>
+                        focus:shadow-outline"> Logout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

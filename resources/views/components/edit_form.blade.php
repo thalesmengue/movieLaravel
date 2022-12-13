@@ -5,8 +5,8 @@
             <i class="fa-solid fa-film text-4xl text-purple-500 mb-4"></i>
         </div>
         <h3 class="text-2xl font-mono text-center text-rose-600">edit movie</h3>
-        <form action="{{ route("movie.update", $movie->id) }}" method="post">
-            @csrf
+        <form action="{{ route("movies.update", $movie->id) }}" method="post">
+            @csrf @method('PATCH')
             <div class="mt-4">
                 <div>
                     <label class="block text-slate-400" for="Name">movie name<label>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mt-4">
                     <label class="block text-slate-400">when watched<label>
-                            <input type="date" placeholder="when i watched" value="{{ $movie->date_watched }}"
+                            <input type="date" placeholder="when i watched" value="{{ $movie->date_watched->format("Y-m-d") }}"
                                    name="date_watched"
                                    class="w-full placeholder-slate-400 px-4 py-2 mt-2 border rounded-md
                                    focus:outline-none focus:ring-[#1da1f2]/50 focus:ring-2">

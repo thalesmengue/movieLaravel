@@ -49,4 +49,13 @@ class User extends Authenticatable implements CanResetPassword
     {
         $this->attributes["password"] = bcrypt($value);
     }
+
+    public function getUserImage()
+    {
+        if (empty($this->profile_image)) {
+            return "pikachu.png";
+        }
+
+        return $this->profile_image;
+    }
 }

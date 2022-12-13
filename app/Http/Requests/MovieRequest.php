@@ -11,7 +11,7 @@ class MovieRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,17 +21,17 @@ class MovieRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return
             [
-                "name" => "required|min:3|max:100|unique:movies",
-                "rating" => "required|integer|min:1|max:10",
-                "date_watched" => "required"
+                "name" => ['required', 'min:3', 'max:100', 'unique:movies'],
+                "rating" => ['required', 'integer', 'min:1', 'max:10'],
+                "date_watched" => ['required']
             ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             "name.required" => "The name field must be filled",

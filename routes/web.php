@@ -9,18 +9,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForgotPasswordController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Route::get("/login", [LoginController::class, "index"])->name("login.view");
 Route::post("/login", [LoginController::class, "login"])->name("login.user");
 
@@ -33,21 +21,10 @@ Route::get("/password/reset/{token}", [ForgotPasswordController::class, "resetPa
 Route::post("/password/reset", [ForgotPasswordController::class, "resetUserPassword"])->name("post.reset");
 
 Route::middleware("auth")->group(function () {
+    Route::resource('movies', MovieController::class)->except('index');
+    Route::resource("users", UserController::class)->only('edit', 'update');
+
     Route::get("/", [MovieController::class, "index"])->name("index");
-    Route::post("/", [MovieController::class, "store"])->name("store");
 
-    Route::get("/register/movie", [MovieController::class, "register"])->name("movie.register");
-    Route::get("/edit/{movie}", [MovieController::class, "edit"])->name("movie.edit");
-    Route::delete("/edit/{movie}", [MovieController::class, "destroy"])->name("movie.destroy");
-
-    Route::get("/profile/{user}", [UserController::class, "edit"])->name("edit.user");
-    Route::post("/profile/{user}", [UserController::class, "update"])->name("update.user");
-    Route::delete("/profile/{user}", [RegisterController::class, "destroy"])->name("destroy.user");
-
-    Route::get("/logout", [LogoutController::class, "logout"])->middleware("auth")->name("logout.user");
+    Route::get("/logout", [LogoutController::class, "logout"])->name("logout.user");
 });
-
-//Route::fallback(function () {
-//    echo 'The route you tried to access isn' . "'" . 't available, <a href="' . route('index') . '">
-//click here</a> to return to home page';
-//});

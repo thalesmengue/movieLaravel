@@ -14,14 +14,14 @@
             <div class="flex gap-2 justify-between text-xl">
                 <div class="flex gap-2">
                     <h2>When Watched:</h2>
-                    <p class="text-gray-300"> {{ $movie->date_watched }} </p>
+                    <p class="text-gray-300"> {{ $movie->date_watched->format("d/m/Y") }} </p>
                 </div>
 
                 <div class="flex flex-wrap gap-4 text-purple-500">
-                    <a href=" {{ route("movie.edit", $movie->id)}} ">
+                    <a href=" {{ route("movies.edit", $movie->id)}} ">
                         <i class="fa-solid fa-pen-to-square hover:opacity-70"></i>
                     </a>
-                    <form class="flex items-center" method="POST" action="{{ route("movie.destroy", $movie->id)}}">
+                    <form class="flex items-center" method="POST" action="{{ route("movies.destroy", $movie->id)}}">
                         @method('DELETE') @csrf
                         <button type="submit">
                             <i class="fa-solid fa-trash-can hover:opacity-70"></i>
