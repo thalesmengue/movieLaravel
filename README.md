@@ -2,7 +2,7 @@
 
 ## The idea
 
-When I've started this project when learned my first things on Laravel, the idea was to recreate an old personal PHP project, where 
+I've started this project when learned my first things about Laravel, the idea was to recreate an old personal PHP project, where 
 people can rate the movies they have already watched.
 <br>
 In the project the user can create their own profile, where they are going to rate the movies they want.
